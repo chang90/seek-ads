@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { Price } from '../../interface/price';
-
-
+import { PriceRule } from '../../interface/priceRule';
 interface PriceProps {
-  priceArrData: Array<Price>;
+  priceArrData: Array<PriceRule>;
 }
 
 const Table = styled.table`
@@ -40,7 +38,7 @@ const FreeAds = styled.div`
   color: #5ac0e2;
 `;
 
-function PriceTable(props: PriceProps) {
+const PriceTable = (props: PriceProps) => {
 
   const [priceArr] = useState(props.priceArrData);
 
@@ -49,7 +47,7 @@ function PriceTable(props: PriceProps) {
       <h3  data-testid={'price-table-header'}>Price Table</h3>
       <Table id='students'>
         <tbody data-testid={'price-table-body'}>
-          {priceArr.map((priceObj:Price, index:number) => (
+          {priceArr.map((priceObj:PriceRule, index:number) => (
             <tr key={index}>
               <TableCell data-testid={`price-name-${index}`}>{priceObj?.name}</TableCell>
               <TableCell data-testid={`price-description-${index}`}>
@@ -63,7 +61,7 @@ function PriceTable(props: PriceProps) {
                 <RetailPrice isActive={!priceObj?.discountPrice}>{priceObj.retailPrice ? `$ ${priceObj.retailPrice}`: '-'}</RetailPrice>
                 {
                   priceObj?.discountPrice &&
-                    <DiscountPrice data-testid={`price-discount-${index}`}>$ {priceObj.discountPrice}</DiscountPrice>
+                  <DiscountPrice data-testid={`price-discount-${index}`}>$ {priceObj.discountPrice}</DiscountPrice>
                 }
               </TableCell>
             </tr>

@@ -1,7 +1,6 @@
 import { FreeAds } from "./freeAds";
 
-
-export interface Price {
+export interface PriceRule {
   name: string,
   description: string,
   retailPrice: number,

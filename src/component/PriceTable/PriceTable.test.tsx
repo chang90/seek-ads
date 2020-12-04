@@ -2,21 +2,22 @@ import React from 'react';
 import { render, cleanup } from '@testing-library/react';
 import PriceTable from './PriceTable';
 import 'jest-styled-components';
-import { Price } from '../../interface/price';
+import { PriceRule } from '../../interface/price';
+import { ProductType } from '../../enum/productType';
 
-const mockPriceArr: Array<Price> = [{
-  name: 'Classic Ad',
+const mockPriceArr: Array<PriceRule> = [{
+  name: ProductType.ClassicAd,
   description: 'Offers the most basic level of advertisement',
   retailPrice: 269.99
 },
 {
-  name: 'Stand out Ad',
+  name: ProductType.StandoutAd,
   description: 'Allows advertisers to use a company logo and use a longer presentation text',
   retailPrice: 322.99,
   discountPrice: 299.99
 },
 {
-  name: 'Premium Ad',
+  name: ProductType.PremiumAd,
   description: 'Same benefits as Standout Ad, but also puts the advertisement at the top of the results, allowing higher visibility',
   retailPrice: 394.99,
   freeAds: {
@@ -53,6 +54,10 @@ describe('price table component', () => {
     expect(getByTestId("price-discount-1").innerHTML).toContain('299.99');
   });
 
+  test('able to display special deals', () => {
+    const { getByTestId } = render(<PriceTable priceArrData={mockPriceArr} />);
+    expect(getByTestId("price-discount-1").innerHTML).toContain('299.99');
+  });
 
   test('price table should contain 3 rows', () => {
     const { getByTestId } = render(<PriceTable priceArrData={mockPriceArr} />);
