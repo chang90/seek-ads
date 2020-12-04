@@ -1,4 +1,4 @@
 export interface FreeAds {
-  adsPackageCount: number;
-  chargedAdsCount: number;
+  totalAdsPerPackage: number;
+  chargedAdsPerPackage: number;
 }

@@ -18,12 +18,17 @@ function App() {
     {
       name: 'Stand out Ad',
       description: 'Allows advertisers to use a company logo and use a longer presentation text',
-      retailPrice: 322.99
+      retailPrice: 322.99,
+      discountPrice: 299.99
     },
     {
       name: 'Premium Ad',
       description: 'Same benefits as Standout Ad, but also puts the advertisement at the top of the results, allowing higher visibility',
-      retailPrice: 394.99
+      retailPrice: 394.99,
+      freeAds: {
+        totalAdsPerPackage: 5,
+        chargedAdsPerPackage: 4
+      }
     }];
 
   return (

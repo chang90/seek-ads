@@ -28,6 +28,18 @@ const TableCell = styled.td`
 padding: 2rem;
 `;
 
+const RetailPrice = styled.div<{isActive: boolean}>`
+  text-decoration: ${ props => props?.isActive? 'none': 'line-through' };
+`;
+
+const DiscountPrice = styled.div`
+  color: #5ac0e2;
+`;
+
+const FreeAds = styled.div`
+  color: #5ac0e2;
+`;
+
 function PriceTable(props: PriceProps) {
 
   const [priceArr] = useState(props.priceArrData);
@@ -39,9 +51,21 @@ function PriceTable(props: PriceProps) {
         <tbody data-testid={'price-table-body'}>
           {priceArr.map((priceObj:Price, index:number) => (
             <tr key={index}>
-              <TableCell data-testid={`price-name-${index}`}>{priceObj.name}</TableCell>
-              <TableCell data-testid={`price-description-${index}`}>{priceObj.description}</TableCell>
-              <TableCell data-testid={`price-retail-${index}`}>{priceObj.retailPrice}</TableCell>
+              <TableCell data-testid={`price-name-${index}`}>{priceObj?.name}</TableCell>
+              <TableCell data-testid={`price-description-${index}`}>
+                <div>{priceObj?.description}</div>
+                {
+                  priceObj?.freeAds?.chargedAdsPerPackage && priceObj?.freeAds?.totalAdsPerPackage &&
+                  <FreeAds>* {priceObj.freeAds.totalAdsPerPackage} for {priceObj.freeAds.chargedAdsPerPackage} deal</FreeAds>
+                }
+                </TableCell>
+              <TableCell data-testid={`price-retail-${index}`}>
+                <RetailPrice isActive={!priceObj?.discountPrice}>{priceObj.retailPrice ? `$ ${priceObj.retailPrice}`: '-'}</RetailPrice>
+                {
+                  priceObj?.discountPrice &&
+                    <DiscountPrice data-testid={`price-discount-${index}`}>$ {priceObj.discountPrice}</DiscountPrice>
+                }
+              </TableCell>
             </tr>
           ))}
         </tbody>

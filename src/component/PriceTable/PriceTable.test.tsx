@@ -12,12 +12,17 @@ const mockPriceArr: Array<Price> = [{
 {
   name: 'Stand out Ad',
   description: 'Allows advertisers to use a company logo and use a longer presentation text',
-  retailPrice: 322.99
+  retailPrice: 322.99,
+  discountPrice: 299.99
 },
 {
   name: 'Premium Ad',
   description: 'Same benefits as Standout Ad, but also puts the advertisement at the top of the results, allowing higher visibility',
-  retailPrice: 394.99
+  retailPrice: 394.99,
+  freeAds: {
+    totalAdsPerPackage: 5,
+    chargedAdsPerPackage: 4
+  }
 }];
 
 afterEach(cleanup);
@@ -42,6 +47,12 @@ describe('price table component', () => {
     const { getByTestId } = render(<PriceTable priceArrData={mockPriceArr} />);
     expect(getByTestId("price-retail-0").innerHTML).toContain('269.99');
   });
+
+  test('able to display discount price', () => {
+    const { getByTestId } = render(<PriceTable priceArrData={mockPriceArr} />);
+    expect(getByTestId("price-discount-1").innerHTML).toContain('299.99');
+  });
+
 
   test('price table should contain 3 rows', () => {
     const { getByTestId } = render(<PriceTable priceArrData={mockPriceArr} />);
