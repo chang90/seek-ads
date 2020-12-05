@@ -31,3 +31,9 @@ npm run build
 ```
 npm run test
 ```
+
+## Fulture plan
+
+- Add better styles and make this page more responsive
+- Able to handle BE API for getting company information
+- Clean up the relative path for import 
