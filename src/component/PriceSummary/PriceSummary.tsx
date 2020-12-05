@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { CompanyName } from '../../enum/companyName';
-import { totalPriceCalculator } from '../../function/totalPriceCalculator';
-import { PriceRule } from '../../interface/priceRule';
-import { ProductItem } from '../../interface/productItem';
+import { CompanyName } from '../../lib/enum/companyName';
+import { totalPriceCalculator } from '../../lib/util/totalPriceCalculator';
+import { PriceRule } from '../../lib/interface/priceRule';
+import { ProductItem } from '../../lib/interface/productItem';
 
 interface PriceSummaryProps {
   itemArr?: Array<ProductItem>;

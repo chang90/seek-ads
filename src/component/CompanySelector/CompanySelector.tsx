@@ -1,6 +1,6 @@
 import React, { ChangeEvent, useState } from 'react';
 import styled from 'styled-components';
-import { CompanyName } from '../../enum/companyName';
+import { CompanyName } from '../../lib/enum/companyName';
 
 interface CompanyProps {
   selectCompanyName?: CompanyName;

@@ -2,8 +2,8 @@ import React from 'react';
 import { render, cleanup } from '@testing-library/react';
 import PriceTable from './PriceTable';
 import 'jest-styled-components';
-import { PriceRule } from '../../interface/priceRule';
-import { ProductType } from '../../enum/productType';
+import { PriceRule } from '../../lib/interface/priceRule';
+import { ProductType } from '../../lib/enum/productType';
 
 const mockPriceArr: Array<PriceRule> = [{
   name: ProductType.ClassicAd,

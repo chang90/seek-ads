@@ -1,12 +1,12 @@
 import React, {  useState } from 'react';
 import PriceTable from '../PriceTable';
 import styled from 'styled-components';
-import { PriceRule } from '../../interface/priceRule';
-import { ProductType } from '../../enum/productType';
+import { PriceRule } from '../../lib/interface/priceRule';
+import { ProductType } from '../../lib/enum/productType';
 import CompanySelector from '../CompanySelector';
-import { CompanyName } from '../../enum/companyName';
-import { CompanyInfo } from '../../interface/companyInfo';
-import { ProductItem } from '../../interface/productItem';
+import { CompanyName } from '../../lib/enum/companyName';
+import { CompanyInfo } from '../../lib/interface/companyInfo';
+import { ProductItem } from '../../lib/interface/productItem';
 import PriceSummary from '../PriceSummary';
 
 const Title = styled.h1`

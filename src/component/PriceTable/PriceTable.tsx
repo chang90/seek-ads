@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { PriceRule } from '../../interface/priceRule';
+import { PriceRule } from '../../lib/interface/priceRule';
 interface PriceProps {
   priceArrData: Array<PriceRule> | null;
   addNewItem: Function;
