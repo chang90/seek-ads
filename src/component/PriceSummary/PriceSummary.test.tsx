@@ -9,6 +9,6 @@ afterEach(cleanup);
 describe('price summery component', () => {
   test('able to render title', () => {
     const { getByTestId } = render(<PriceSummary itemArr={[]} priceArr={[]}/>);
-    expect(getByTestId("greating-header").innerHTML).toContain('Hello, please select your company');
+    expect(getByTestId("summary-title").innerHTML).toContain('Summary');
   });
 });

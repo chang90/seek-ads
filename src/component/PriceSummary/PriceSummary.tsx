@@ -34,7 +34,7 @@ const PriceSummary = (props: PriceSummaryProps) => {
 
   return (
     <PriceSummeryContainer>
-      <h3 data-testid={'summary-title'}>Summery</h3>
+      <h3 data-testid={'summary-title'}>Summary</h3>
       <div data-testid={'name'}>Customer: {props?.companyName}</div>
   <div data-testid={'item-list'}>Items: 
   {
