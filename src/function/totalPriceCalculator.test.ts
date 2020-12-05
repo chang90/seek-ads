@@ -143,7 +143,7 @@ describe('totalPriceCalculator function', () => {
       name: ProductType.PremiumAd,
       description: 'Same benefits as Standout Ad, but also puts the advertisement at the top of the results, allowing higher visibility',
       retailPrice: 394.99
-    }];;
+    }];
     const result = totalPriceCalculator(mockItemArr, mockPriceArr);
 
     expect(result).toEqual(987.97);
@@ -169,7 +169,7 @@ describe('totalPriceCalculator function', () => {
       name: ProductType.PremiumAd,
       description: 'Same benefits as Standout Ad, but also puts the advertisement at the top of the results, allowing higher visibility',
       retailPrice: 394.99
-    }];;
+    }];
     const result = totalPriceCalculator(mockItemArr, mockPriceArr);
 
     expect(result).toEqual(934.97);

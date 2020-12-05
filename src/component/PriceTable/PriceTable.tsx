@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { PriceRule } from '../../interface/priceRule';
 interface PriceProps {
-  priceArrData: Array<PriceRule>;
+  priceArrData: Array<PriceRule> | null;
+  addNewItem: Function;
 }
 
 const Table = styled.table`
@@ -40,14 +41,18 @@ const FreeAds = styled.div`
 
 const PriceTable = (props: PriceProps) => {
 
-  const [priceArr] = useState(props.priceArrData);
+  const [priceRuleArr, SetPriceRuleArr] = useState(props.priceArrData);
+
+  useEffect(() => {
+    SetPriceRuleArr(props.priceArrData);
+}, [props.priceArrData])
 
   return (
     <TableContainer>
       <h3  data-testid={'price-table-header'}>Price Table</h3>
       <Table id='students'>
         <tbody data-testid={'price-table-body'}>
-          {priceArr.map((priceObj:PriceRule, index:number) => (
+          {priceRuleArr && priceRuleArr.map((priceObj:PriceRule, index:number) => (
             <tr key={index}>
               <TableCell data-testid={`price-name-${index}`}>{priceObj?.name}</TableCell>
               <TableCell data-testid={`price-description-${index}`}>
@@ -63,6 +68,9 @@ const PriceTable = (props: PriceProps) => {
                   priceObj?.discountPrice &&
                   <DiscountPrice data-testid={`price-discount-${index}`}>$ {priceObj.discountPrice}</DiscountPrice>
                 }
+              </TableCell>
+              <TableCell data-testid={`price-add-item-${index}`}>
+                <button onClick={()=>{props.addNewItem(priceObj.name)}}>Add</button>
               </TableCell>
             </tr>
           ))}

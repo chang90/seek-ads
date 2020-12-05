@@ -50,8 +50,10 @@ export const totalPriceCalculator = (itemArr: Array<ProductItem>, priceRuleArr: 
 
   const freeAdsRulMap = getFreeAdsRuleMap(priceRuleArr);
 
+  
   totalPrice = getNormalPrice(productMap, retailPriceMap) - getDiscountSaving(productMap, discountSavingMap) - getFreeAdsSaving(productMap, freeAdsRulMap);
 
+  totalPrice = Number(totalPrice.toFixed(2));
   return totalPrice;
 }
 
