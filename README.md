@@ -6,7 +6,7 @@ React front end project of a simple ads price calculator base on styled-componen
 
 node v12.18.3 (better using nvm to install it)
 
- - Note: This project was written under Windows env, so if you are using Mac, please check the '\' or '/' problem when needed.
+ - Note: This project was written under Windows env, so if you are using Mac, please check the '/' problem when needed.
 
 ## Install
 
