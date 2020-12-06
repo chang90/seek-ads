@@ -1,4 +1,4 @@
-# Getting Started with Seek Ads App
+# Seek Ads App
 
 React front end project of a simple ads price calculator base on styled-components, Jest and Typescript.
 
