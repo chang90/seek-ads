@@ -1,34 +1,34 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { PriceRule } from '../../lib/interface/priceRule';
 interface PriceProps {
-  priceArrData: Array<PriceRule> | null;
+  priceRules: Array<PriceRule> | undefined;
   addNewItem: Function;
 }
 
 const Table = styled.table`
-background: #fbfbfb;
-font-size: 1em;
-margin: 1em;
-padding: 0.25em 1em;
-border: 2px solid #ccc;
-border-radius: 3px;
+  background: #fbfbfb;
+  font-size: 1em;
+  margin: 1em;
+  padding: 0.25em 1em;
+  border: 2px solid #ccc;
+  border-radius: 3px;
 `;
 
 const TableContainer = styled.div`
-width: 100%;
-display:flex;
-justify-content:center;
-align-items: center;
-flex-direction:column;
+  width: 100%;
+  display:flex;
+  justify-content:center;
+  align-items: center;
+  flex-direction:column;
 `;
 
 const TableCell = styled.td`
-padding: 2rem;
+  padding: 2rem;
 `;
 
-const RetailPrice = styled.div<{isActive: boolean}>`
-  text-decoration: ${ props => props?.isActive? 'none': 'line-through' };
+const RetailPrice = styled.div<{ isActive: boolean }>`
+  text-decoration: ${props => props?.isActive ? 'none' : 'line-through'};
 `;
 
 const DiscountPrice = styled.div`
@@ -40,37 +40,30 @@ const FreeAds = styled.div`
 `;
 
 const PriceTable = (props: PriceProps) => {
-
-  const [priceRuleArr, SetPriceRuleArr] = useState(props.priceArrData);
-
-  useEffect(() => {
-    SetPriceRuleArr(props.priceArrData);
-}, [props.priceArrData])
-
   return (
     <TableContainer>
-      <h3  data-testid={'price-table-header'}>Price Table</h3>
-      <Table id='students'>
+      <h3 data-testid={'price-table-header'}>Price Table</h3>
+      <Table>
         <tbody data-testid={'price-table-body'}>
-          {priceRuleArr && priceRuleArr.map((priceObj:PriceRule, index:number) => (
+          {props.priceRules && props.priceRules.map((priceRule: PriceRule, index: number) => (
             <tr key={index}>
-              <TableCell data-testid={`price-name-${index}`}>{priceObj?.name}</TableCell>
+              <TableCell data-testid={`price-name-${index}`}>{priceRule?.name}</TableCell>
               <TableCell data-testid={`price-description-${index}`}>
-                <div>{priceObj?.description}</div>
+                <div>{priceRule?.description}</div>
                 {
-                  priceObj?.freeAds?.chargedAdsPerPackage && priceObj?.freeAds?.totalAdsPerPackage &&
-                  <FreeAds>* {priceObj.freeAds.totalAdsPerPackage} for {priceObj.freeAds.chargedAdsPerPackage} deal</FreeAds>
+                  priceRule?.freeAds?.chargedAdsPerPackage && priceRule?.freeAds?.totalAdsPerPackage &&
+                  <FreeAds>* {priceRule.freeAds.totalAdsPerPackage} for {priceRule.freeAds.chargedAdsPerPackage} deal</FreeAds>
                 }
-                </TableCell>
+              </TableCell>
               <TableCell data-testid={`price-retail-${index}`}>
-                <RetailPrice isActive={!priceObj?.discountPrice}>{priceObj.retailPrice ? `$ ${priceObj.retailPrice}`: '-'}</RetailPrice>
+                <RetailPrice isActive={!priceRule?.discountPrice}>{priceRule.retailPrice ? `$ ${priceRule.retailPrice}` : '-'}</RetailPrice>
                 {
-                  priceObj?.discountPrice &&
-                  <DiscountPrice data-testid={`price-discount-${index}`}>$ {priceObj.discountPrice}</DiscountPrice>
+                  priceRule?.discountPrice &&
+                  <DiscountPrice data-testid={`price-discount-${index}`}>$ {priceRule.discountPrice}</DiscountPrice>
                 }
               </TableCell>
               <TableCell data-testid={`price-add-item-${index}`}>
-                <button onClick={()=>{props.addNewItem(priceObj.name)}}>Add</button>
+                <button onClick={() => props.addNewItem(priceRule.name)}>Add</button>
               </TableCell>
             </tr>
           ))}

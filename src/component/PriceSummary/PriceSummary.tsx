@@ -1,48 +1,45 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback } from 'react';
 import styled from 'styled-components';
-import { CompanyName } from '../../lib/enum/companyName';
 import { totalPriceCalculator } from '../../lib/util/totalPriceCalculator';
-import { PriceRule } from '../../lib/interface/priceRule';
 import { ProductItem } from '../../lib/interface/productItem';
+import { CompanyInfo } from '../../lib/interface/companyInfo';
 
 interface PriceSummaryProps {
-  itemArr?: Array<ProductItem>;
-  priceArr?: Array<PriceRule>;
-  companyName?: CompanyName;
+  items?: Array<ProductItem>;
+  company?: CompanyInfo;
 }
 
 const PriceSummeryContainer = styled.div`
-font-size: 1em;
-padding: 0.25em 1em;
-display: flex;
-flex-direction: column;
-align-items:center;
-justify-content: center;
+  font-size: 1em;
+  padding: 0.25em 1em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 `;
 
 const PriceSummary = (props: PriceSummaryProps) => {
-  const [totalPrice, setTotalPrice] = useState<number>(0);
 
-  useEffect(() => {
-    if (props?.itemArr && props?.priceArr) {
-      const result = totalPriceCalculator(props.itemArr, props.priceArr)
-      setTotalPrice(result);
+  const getTotalPrice = useCallback(() => {
+    if (props.items && props.company?.priceRules) {
+      return totalPriceCalculator(props.items, props.company.priceRules)
     } else {
-      setTotalPrice(0);
+      return 0;
     }
-  }, [props])
+  }, [props.items, props.company])
 
   return (
     <PriceSummeryContainer>
       <h3 data-testid={'summary-title'}>Summary</h3>
-      <div data-testid={'name'}>Customer: {props?.companyName}</div>
-  <div data-testid={'item-list'}>Items: 
-  {
-   props?.itemArr && props.itemArr.map((item:ProductItem, index:number) => (
-    <span key={index}>{item.type}. </span>
-   ))}
-  </div>
-      <div data-testid={'total'}>Total: {totalPrice}</div>
+      <div data-testid={'name'}>Customer: {props.company?.companyName}</div>
+      <div data-testid={'item-list'}>Items:
+      {
+        props?.items && props.items.map((item: ProductItem, index: number) => (
+          <span key={index}>{item.type} </span>
+        ))
+      }
+      </div>
+      <div data-testid={'total'}>Total: {getTotalPrice()}</div>
     </PriceSummeryContainer>
   );
 }

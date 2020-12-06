@@ -8,18 +8,18 @@ import { getNormalPrice } from "./getNormalPrice";
 import { getProductMap } from "./getProductMap";
 import { getRetailPriceMap } from "./getRetailPriceMap";
 
-export const totalPriceCalculator = (itemArr: Array<ProductItem>, priceRuleArr: Array<PriceRule>): number => {
+export const totalPriceCalculator = (itemArr: Array<ProductItem>, priceRules: Array<PriceRule>): number => {
   let totalPrice = 0;
 
-  const retailPriceMap = getRetailPriceMap(priceRuleArr);
+  const retailPriceMap = getRetailPriceMap(priceRules);
 
   const productMap = getProductMap(itemArr);
 
-  const discountSavingMap = getDiscountSavingMap(priceRuleArr);
+  const discountSavingMap = getDiscountSavingMap(priceRules);
 
-  const freeAdsRulMap = getFreeAdsRuleMap(priceRuleArr);
+  const freeAdsRuleMap = getFreeAdsRuleMap(priceRules);
 
-  totalPrice = getNormalPrice(productMap, retailPriceMap) - getDiscountSaving(productMap, discountSavingMap) - getFreeAdsSaving(productMap, freeAdsRulMap);
+  totalPrice = getNormalPrice(productMap, retailPriceMap) - getDiscountSaving(productMap, discountSavingMap) - getFreeAdsSaving(productMap, freeAdsRuleMap);
 
   totalPrice = Number(totalPrice.toFixed(2));
   

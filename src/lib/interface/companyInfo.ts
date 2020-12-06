@@ -3,5 +3,5 @@ import { PriceRule } from "./priceRule";
 
 export interface CompanyInfo {
   companyName: CompanyName;
-  priceRule: Array<PriceRule>;
+  priceRules: Array<PriceRule>;
 }

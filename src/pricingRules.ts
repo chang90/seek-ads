@@ -1,23 +1,11 @@
-import React, {  useState } from 'react';
-import PriceTable from '../PriceTable';
-import styled from 'styled-components';
-import { PriceRule } from '../../lib/interface/priceRule';
-import { ProductType } from '../../lib/enum/productType';
-import CompanySelector from '../CompanySelector';
-import { CompanyName } from '../../lib/enum/companyName';
-import { CompanyInfo } from '../../lib/interface/companyInfo';
-import { ProductItem } from '../../lib/interface/productItem';
-import PriceSummary from '../PriceSummary';
+import { CompanyName } from "./lib/enum/companyName";
+import { ProductType } from "./lib/enum/productType";
+import { CompanyInfo } from "./lib/interface/companyInfo";
 
-const Title = styled.h1`
-padding: 1em;
-text-align:center;
-`;
-
-const companyInfoGroup: { [key in CompanyName]?: CompanyInfo } = {
+export const pricingRules: { [key in CompanyName]?: CompanyInfo } = {
   [CompanyName.Default]: {
     companyName: CompanyName.Default,
-    priceRule: [{
+    priceRules: [{
       name: ProductType.ClassicAd,
       description: 'Offers the most basic level of advertisement',
       retailPrice: 269.99
@@ -35,7 +23,7 @@ const companyInfoGroup: { [key in CompanyName]?: CompanyInfo } = {
   },
   [CompanyName.SecondBite]: {
     companyName: CompanyName.SecondBite,
-    priceRule: [{
+    priceRules: [{
       name: ProductType.ClassicAd,
       description: 'Offers the most basic level of advertisement',
       retailPrice: 269.99,
@@ -57,7 +45,7 @@ const companyInfoGroup: { [key in CompanyName]?: CompanyInfo } = {
   },
   [CompanyName.AxilCoffeeRoasters]: {
     companyName: CompanyName.AxilCoffeeRoasters,
-    priceRule: [{
+    priceRules: [{
       name: ProductType.ClassicAd,
       description: 'Offers the most basic level of advertisement',
       retailPrice: 269.99
@@ -76,7 +64,7 @@ const companyInfoGroup: { [key in CompanyName]?: CompanyInfo } = {
   },
   [CompanyName.Myer]: {
     companyName: CompanyName.Myer,
-    priceRule: [{
+    priceRules: [{
       name: ProductType.ClassicAd,
       description: 'Offers the most basic level of advertisement',
       retailPrice: 269.99
@@ -98,44 +86,3 @@ const companyInfoGroup: { [key in CompanyName]?: CompanyInfo } = {
     }]
   }
 }
-
-const App = () => {
-  const [selectedCompanyPriceRule, setSelectedCompanyPriceRule] =
-   useState<Array<PriceRule> | []>(Object.values(companyInfoGroup)[0]?.priceRule as Array<PriceRule>);
-  const [selectedCompanyName, setSelectedCompanyName] =
-   useState<CompanyName | undefined>(Object.keys(companyInfoGroup)[0] as CompanyName);
-  const [itemArr, setItemArr] = useState<Array<ProductItem>>([]);
-
-  const changeSelectedCompany = (companyName: CompanyName): void => {
-    if (companyInfoGroup[companyName]) {
-      console.log('changeSelectedCompany', companyName)
-      setSelectedCompanyPriceRule(
-        (companyInfoGroup && companyInfoGroup[companyName]?.priceRule) ? (companyInfoGroup[companyName] as CompanyInfo).priceRule : []);
-      setSelectedCompanyName(companyName);
-
-      // Clean up old itemArr
-      setItemArr([]);
-    }
-  }
-
-  const addNewItem = (itemType: ProductType) => {
-    const newItem: ProductItem = {
-      type: itemType
-    } 
-    setItemArr([...itemArr, newItem]);
-  }
-
-  return (
-    <div className="App">
-      <Title>Seek Ads</Title>
-      <CompanySelector
-        selectCompanyName={selectedCompanyName}
-        companyNameArr={Object.keys(companyInfoGroup) as Array<CompanyName>}
-        changeSelectedCompany={changeSelectedCompany} />
-      <PriceTable priceArrData={selectedCompanyPriceRule} addNewItem={addNewItem} />
-      <PriceSummary itemArr={itemArr} priceArr={selectedCompanyPriceRule} companyName={selectedCompanyName}></PriceSummary>
-    </div>
-  );
-}
-
-export default App;

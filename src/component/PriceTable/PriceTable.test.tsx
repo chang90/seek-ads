@@ -30,37 +30,37 @@ afterEach(cleanup);
 
 describe('price table component', () => {
   test('able to render table title', () => {
-    const { getByTestId } = render(<PriceTable priceArrData={[]} addNewItem={()=>{}} />);
+    const { getByTestId } = render(<PriceTable priceRules={[]} addNewItem={()=>{}} />);
     expect(getByTestId("price-table-header").innerHTML).toContain('Price Table');
   });
 
   test('able to display price name', () => {
-    const { getByTestId } = render(<PriceTable priceArrData={mockPriceArr} addNewItem={()=>{}} />);
+    const { getByTestId } = render(<PriceTable priceRules={mockPriceArr} addNewItem={()=>{}} />);
     expect(getByTestId("price-name-0").innerHTML).toContain('Classic Ad');
   });
 
   test('able to display price description', () => {
-    const { getByTestId } = render(<PriceTable priceArrData={mockPriceArr} addNewItem={()=>{}} />);
+    const { getByTestId } = render(<PriceTable priceRules={mockPriceArr} addNewItem={()=>{}} />);
     expect(getByTestId("price-description-0").innerHTML).toContain('Offers the most basic level of advertisement');
   });
 
   test('able to display retail price', () => {
-    const { getByTestId } = render(<PriceTable priceArrData={mockPriceArr} addNewItem={()=>{}} />);
+    const { getByTestId } = render(<PriceTable priceRules={mockPriceArr} addNewItem={()=>{}} />);
     expect(getByTestId("price-retail-0").innerHTML).toContain('269.99');
   });
 
   test('able to display discount price', () => {
-    const { getByTestId } = render(<PriceTable priceArrData={mockPriceArr} addNewItem={()=>{}} />);
+    const { getByTestId } = render(<PriceTable priceRules={mockPriceArr} addNewItem={()=>{}} />);
     expect(getByTestId("price-discount-1").innerHTML).toContain('299.99');
   });
 
   test('able to display special deals', () => {
-    const { getByTestId } = render(<PriceTable priceArrData={mockPriceArr} addNewItem={()=>{}} />);
+    const { getByTestId } = render(<PriceTable priceRules={mockPriceArr} addNewItem={()=>{}} />);
     expect(getByTestId("price-discount-1").innerHTML).toContain('299.99');
   });
 
   test('price table should contain 3 rows', () => {
-    const { getByTestId } = render(<PriceTable priceArrData={mockPriceArr} addNewItem={()=>{}} />);
+    const { getByTestId } = render(<PriceTable priceRules={mockPriceArr} addNewItem={()=>{}} />);
     expect(getByTestId("price-table-body").children.length).toEqual(3);
   });
 });

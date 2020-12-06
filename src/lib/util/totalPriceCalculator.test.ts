@@ -3,7 +3,7 @@ import { ProductType } from '../enum/productType';
 import { PriceRule } from '../interface/priceRule';
 
 describe('totalPriceCalculator function', () => {
-  test('default customer with items: `classic`, `standout`, `premium` should get result 987.97', () => {
+  test('default customer with items: `classic`, `standout`, `premium` should get correct result 987.97', () => {
     const mockItemArr = [{ type: ProductType.ClassicAd }, { type: ProductType.StandoutAd }, { type: ProductType.PremiumAd }];
     const mockPriceArr: Array<PriceRule> = [{
       name: ProductType.ClassicAd,
