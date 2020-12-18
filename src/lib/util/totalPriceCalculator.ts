@@ -7,7 +7,7 @@ import { getDiscountSavingMap } from "./getDiscountSavingMap";
 import { getFreeAdsRuleMap } from "./getFreeAdsRuleMap";
 import { getFreeAdsSaving } from "./getFreeAdsSaving";
 import { getNormalPrice } from "./getNormalPrice";
-import { getProductMap } from "./getProductMap";
+import { getShoppingCartMap } from "./getShoppingCartMap";
 import { getRetailPriceMap } from "./getRetailPriceMap";
 
 export const totalPriceCalculator = (itemArr: Array<ProductItem>, priceRules: Array<PriceRule>): number => {
@@ -15,7 +15,7 @@ export const totalPriceCalculator = (itemArr: Array<ProductItem>, priceRules: Ar
 
   const retailPriceMap = getRetailPriceMap(priceRules);
 
-  const productMap = getProductMap(itemArr);
+  const productMap = getShoppingCartMap(itemArr);
 
   const discountSavingMap = getDiscountSavingMap(priceRules);
 

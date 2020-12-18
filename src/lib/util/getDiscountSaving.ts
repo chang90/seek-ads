@@ -1,11 +1,11 @@
 import { DiscountSavingMap } from "../interface/discountSavingMap";
-import { ProductMap } from "../interface/productMap";
+import { ShoppingCartMap } from "../interface/shoppingCartMap";
 
-export const getDiscountSaving = (productMap: ProductMap, discountSavingMap: DiscountSavingMap) => {
+export const getDiscountSaving = (shoppingCartMap: ShoppingCartMap, discountSavingMap: DiscountSavingMap) => {
   let totalSaving = 0;
-  for (const product in productMap) {
-    if(discountSavingMap[product]) {
-      totalSaving = totalSaving + discountSavingMap[product] * productMap[product];
+  for (const shoppingCart in shoppingCartMap) {
+    if(discountSavingMap[shoppingCart]) {
+      totalSaving = totalSaving + discountSavingMap[shoppingCart] * shoppingCartMap[shoppingCart];
     }
   }
   return totalSaving;

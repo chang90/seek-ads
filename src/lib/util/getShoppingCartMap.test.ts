@@ -1,11 +1,11 @@
 import { ProductType } from "../enum/productType";
-import { getProductMap } from "./getProductMap";
+import { getShoppingCartMap} from "./getShoppingCartMap";
 
-describe('getProductMap function', () => {
-  test('getProductMap function should return productMap', () => {
+describe('getShoppingCartMapfunction', () => {
+  test('getShoppingCartMapfunction should return productMap', () => {
     const input = [{ type: ProductType.StandoutAd }, { type: ProductType.StandoutAd }, { type: ProductType.StandoutAd }, { type: ProductType.PremiumAd }];
     const output = { 'Stand out Ad': 3, 'Premium Ad': 1 };
 
-    expect(getProductMap(input)).toEqual(output);
+    expect(getShoppingCartMap(input)).toEqual(output);
   });
 });

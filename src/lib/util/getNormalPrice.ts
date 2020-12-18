@@ -1,10 +1,10 @@
-import { ProductMap } from "../interface/productMap";
+import { ShoppingCartMap } from "../interface/shoppingCartMap";
 import { RetailPriceRuleMap } from "../interface/retailPriceRuleMap";
 
-export const getNormalPrice = (productMap: ProductMap, retailPriceMap: RetailPriceRuleMap): number => {
+export const getNormalPrice = (shoppingCartMap: ShoppingCartMap, retailPriceMap: RetailPriceRuleMap): number => {
   let resultPrice = 0;
-  for (const productItem in productMap) {
-    resultPrice = resultPrice + productMap[productItem] * retailPriceMap[productItem];
+  for (const productItem in shoppingCartMap) {
+    resultPrice = resultPrice + shoppingCartMap[productItem] * retailPriceMap[productItem];
   }
   return resultPrice;
 }
