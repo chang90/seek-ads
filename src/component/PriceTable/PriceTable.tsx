@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { PriceRule } from '../../lib/interface/priceRule';
+
 interface PriceProps {
   priceRules: Array<PriceRule> | undefined;
   addNewItem: Function;
@@ -54,12 +55,16 @@ const PriceTable = (props: PriceProps) => {
                   priceRule?.freeAds?.chargedAdsPerPackage && priceRule?.freeAds?.totalAdsPerPackage &&
                   <FreeAds>* {priceRule.freeAds.totalAdsPerPackage} for {priceRule.freeAds.chargedAdsPerPackage} deal</FreeAds>
                 }
+                {
+                  priceRule?.discountRule?.discountPrice && priceRule?.discountRule?.bulkDiscountItemNumber &&
+                  <DiscountPrice data-testid={`price-discount-${index}`}>* Gets a discount on Premium Ads where {priceRule.discountRule.bulkDiscountItemNumber} or more are purchased.</DiscountPrice>
+                }
               </TableCell>
               <TableCell data-testid={`price-retail-${index}`}>
-                <RetailPrice isActive={!priceRule?.discountPrice}>{priceRule.retailPrice ? `$ ${priceRule.retailPrice}` : '-'}</RetailPrice>
+                <RetailPrice isActive={!priceRule?.discountRule?.discountPrice}>{priceRule.retailPrice ? `$ ${priceRule.retailPrice}` : '-'}</RetailPrice>
                 {
-                  priceRule?.discountPrice &&
-                  <DiscountPrice data-testid={`price-discount-${index}`}>$ {priceRule.discountPrice}</DiscountPrice>
+                  priceRule?.discountRule?.discountPrice &&
+                  <DiscountPrice data-testid={`price-discount-${index}`}>$ {priceRule.discountRule.discountPrice}</DiscountPrice>
                 }
               </TableCell>
               <TableCell data-testid={`price-add-item-${index}`}>

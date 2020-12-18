@@ -51,6 +51,32 @@ describe('totalPriceCalculator function', () => {
     expect(result).toEqual(934.97);
   });
 
+  test('Jora with items: `premium`, `premium`, `premium`, `premium` should get result 1519.96', () => {
+    const mockItemArr = [{ type: ProductType.PremiumAd }, { type: ProductType.PremiumAd }, { type: ProductType.PremiumAd }, { type: ProductType.PremiumAd }];
+    const mockPriceArr: Array<PriceRule> = [{
+      name: ProductType.ClassicAd,
+      description: 'Offers the most basic level of advertisement',
+      retailPrice: 269.99,
+    },
+    {
+      name: ProductType.StandoutAd,
+      description: 'Allows advertisers to use a company logo and use a longer presentation text',
+      retailPrice: 322.99
+    },
+    {
+      name: ProductType.PremiumAd,
+      description: 'Same benefits as Standout Ad, but also puts the advertisement at the top of the results, allowing higher visibility',
+      retailPrice: 394.99,
+      discountRule: {
+        discountPrice: 379.99,
+        bulkDiscountItemNumber: 4
+      }
+    }];
+    const result = totalPriceCalculator(mockItemArr, mockPriceArr);
+
+    expect(result).toEqual(1519.96);
+  });
+
   test('Axil Coffee Roasters with items: `standout`, `standout`, `standout`,`premium` should get result 1294.96', () => {
     const mockItemArr = [
       { type: ProductType.StandoutAd },
@@ -66,7 +92,9 @@ describe('totalPriceCalculator function', () => {
       name: ProductType.StandoutAd,
       description: 'Allows advertisers to use a company logo and use a longer presentation text',
       retailPrice: 322.99,
-      discountPrice: 299.99
+      discountRule: {
+        discountPrice: 299.99
+      }
     },
     {
       name: ProductType.PremiumAd,
@@ -104,7 +132,9 @@ describe('totalPriceCalculator function', () => {
       name: ProductType.PremiumAd,
       description: 'Same benefits as Standout Ad, but also puts the advertisement at the top of the results, allowing higher visibility',
       retailPrice: 394.99,
-      discountPrice: 389.99
+      discountRule: {
+        discountPrice: 389.99
+      }
     }];
     const result = totalPriceCalculator(mockItemArr, mockPriceArr);
 
