@@ -1,5 +1,7 @@
 import { PriceRule } from "../interface/priceRule";
 import { ProductItem } from "../interface/productItem";
+import { getBulkDiscountMap } from "./getBulkDiscountMap";
+import { getBulkDiscountSaving } from "./getBulkDiscountSaving";
 import { getDiscountSaving } from "./getDiscountSaving";
 import { getDiscountSavingMap } from "./getDiscountSavingMap";
 import { getFreeAdsRuleMap } from "./getFreeAdsRuleMap";
@@ -19,7 +21,11 @@ export const totalPriceCalculator = (itemArr: Array<ProductItem>, priceRules: Ar
 
   const freeAdsRuleMap = getFreeAdsRuleMap(priceRules);
 
-  totalPrice = getNormalPrice(productMap, retailPriceMap) - getDiscountSaving(productMap, discountSavingMap) - getFreeAdsSaving(productMap, freeAdsRuleMap);
+  const bulkDiscountRuleMap = getBulkDiscountMap(priceRules);
+
+  console.log(bulkDiscountRuleMap)
+
+  totalPrice = getNormalPrice(productMap, retailPriceMap) - getDiscountSaving(productMap, discountSavingMap) - getFreeAdsSaving(productMap, freeAdsRuleMap) - getBulkDiscountSaving(productMap, bulkDiscountRuleMap, retailPriceMap);
 
   totalPrice = Number(totalPrice.toFixed(2));
   

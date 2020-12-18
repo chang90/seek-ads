@@ -62,12 +62,38 @@ export const pricingRules: { [key in CompanyName]?: CompanyInfo } = {
       retailPrice: 394.99
     }]
   },
+  [CompanyName.JORA]: {
+    companyName: CompanyName.JORA,
+    priceRules:[{
+      name: ProductType.ClassicAd,
+      description: 'Offers the most basic level of advertisement',
+      retailPrice: 269.99
+    },
+    {
+      name: ProductType.StandoutAd,
+      description: 'Allows advertisers to use a company logo and use a longer presentation text',
+      retailPrice: 322.99
+    },
+    {
+      name: ProductType.PremiumAd,
+      description: 'Same benefits as Standout Ad, but also puts the advertisement at the top of the results, allowing higher visibility',
+      retailPrice: 394.99,
+      bulkDiscount: {
+        appliedAdsMinumNumber: 4,
+        discountPrice: 379.99
+      }
+    }]
+  },
   [CompanyName.Myer]: {
     companyName: CompanyName.Myer,
     priceRules: [{
       name: ProductType.ClassicAd,
       description: 'Offers the most basic level of advertisement',
-      retailPrice: 269.99
+      retailPrice: 269.99,
+      bulkDiscount: {
+        appliedAdsMinumNumber: 3,
+        discountPrice: 249.99
+      }
     },
     {
       name: ProductType.StandoutAd,

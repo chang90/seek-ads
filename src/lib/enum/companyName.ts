@@ -2,5 +2,6 @@ export enum CompanyName {
   Default = 'Default',
   SecondBite = 'SecondBite',
   AxilCoffeeRoasters = 'Axil Coffee Roasters',
-  Myer = 'MYER'
+  Myer = 'MYER',
+  JORA = 'Jora'
 }
